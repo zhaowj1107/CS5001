@@ -29,8 +29,13 @@ def main():
             print("Encountered the following errors with your inputs:")
             print("Invalid column imput. it must be a letter between A & H")
     else:
-        print("Encountered the following errors with your inputs:")
-        print("Invalid row imput. it must be a letter between 1 & 8")
+        if not cb.check_valid_column(column):
+            print("Encountered the following errors with your inputs:")
+            print("Invalid column imput. it must be a letter between A & H")
+            print("Invalid row imput. it must be a letter between 1 & 8")
+        else:
+            print("Encountered the following errors with your inputs:")
+            print("Invalid row imput. it must be a letter between 1 & 8")
 
 
 if __name__ == "__main__":
