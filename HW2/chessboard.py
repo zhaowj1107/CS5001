@@ -19,6 +19,8 @@ def determine_black_or_white(row, column):
     'Black'
     >>> determine_black_or_white(6,"c")
     'White'
+    >>> determine_black_or_white(4,"A")
+    'White'
     """
     capital_letter = (column == 'A' or column == 'C') or \
                      (column == 'E' or column == 'G')

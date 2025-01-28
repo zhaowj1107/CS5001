@@ -10,6 +10,7 @@ homework 2-1: Turtle
 import turtle as t
 import align_draw as ad
 
+
 def main():
     SQUARE_LENGTH = 150
     # Set up the screen with a background image
@@ -35,6 +36,6 @@ def main():
     ad.write_text(x, y, "hello world", "red")
     t.done()
 
+
 if __name__ == "__main__":
     main()
-    # Keep the window open

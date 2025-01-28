@@ -74,5 +74,33 @@ def main():
         output(balance, fifties)
 
 
+def main_fix():
+    # calculate the number of each type of currency
+    FIFTY = 50
+    TWENTY = 20
+    TEN = 10
+    FIVE = 5
+    TWO = 2
+    balance = int(input("Welcome to NUBC Bank! How much to withdraw? ")) 
+    
+    # Calculate each denomination sequentially
+    fifties = balance // FIFTY
+    after_balance = balance % FIFTY
+    
+    twenties = after_balance // TWENTY
+    after_balance = after_balance % TWENTY
+    
+    tens = after_balance // TEN
+    after_balance = after_balance % TEN
+    
+    fives = after_balance // FIVE
+    after_balance = after_balance % FIVE
+    
+    toonies = after_balance // TWO
+    loonies = after_balance % TWO
+
+    # Output the result
+    output(balance, fifties, twenties, tens, fives, toonies, loonies)
+
 if __name__ == "__main__":
     main()
