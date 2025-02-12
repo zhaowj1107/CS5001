@@ -72,6 +72,18 @@ def generate_story(sentences: list, direction: str, ending: str):
     Function generate_story
     Parameters: one list and two strs
     Returns: new_sentences_str
+    >>> story = ["First", "Second", "Third"]
+    >>> generate_story(story, 'backward', 'sun')
+    'Third\\nSecond\\nFirst\\nRest now, for when the sun rises, a new story unfolds.'
+
+    >>> story = ["First", "Second", "Third"]
+    >>> generate_story(story, 'forward', 'stars')
+    'First\\nSecond\\nThird\\nAs the stars twinkled overhead, \
+dreams of tomorrow awaited.'
+
+    >>> story = ["First", "Second", "Third"]
+    >>> generate_story(story, 'every other', 'anything')
+    'First\\nThird\\nIn the quiet of the night, dreams of new adventures took flight.'
     """
     # there are huge amount of return for the doctest
     new_sentences = process_direction(sentences, direction)

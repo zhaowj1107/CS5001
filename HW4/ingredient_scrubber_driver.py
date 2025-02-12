@@ -15,7 +15,7 @@ def main():
     Function main
     Parameters: None
     Returns: Nothing
-    Pring out the result
+    Get user input and print out the result
     """
     user_input_list = []
     cleaned_output_list = []
@@ -39,6 +39,8 @@ def main():
     print("Scrubbed Ingredients: ")
     for output in cleaned_output_list:
         print(output)
+
+    # Print flagged if necessary
     if flag_list != []:
         print("")
         print("Flagged Entries: ")

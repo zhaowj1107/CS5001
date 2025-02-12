@@ -56,7 +56,7 @@ def validate_unit(unit: str):
 def validate_quantity(quantity: str):
     """
     function name: validate_quantity
-    checks if the quantity is a valid number (integer or fraction)
+    checks if the quantity is a valid number (integer or float)
     >>> validate_quantity("1")
     True
     >>> validate_quantity("1.2")
@@ -81,7 +81,11 @@ def validate_ingredient(ingredient: str):
     'flour'
     >>> validate_ingredient("peppersss")
     'Invalid Ingredient'
-    >>> validate_ingredient("of baking soda")
+    >>> validate_ingredient("and baking soda")
+    'baking soda'
+    >>> validate_ingredient("in baking soda")
+    'baking soda'
+    >>> validate_ingredient("with baking soda")
     'baking soda'
     >>> validate_ingredient("of wa1ter")
     'Invalid Ingredient'

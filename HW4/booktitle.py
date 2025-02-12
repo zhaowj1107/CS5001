@@ -14,10 +14,16 @@ def is_length_valid(title: str, min_length: int = 12, max_length: int = 25):
     checks if the title length is within valid range (inclusive)
     >>> is_length_valid("Short")
     False
+    >>> is_length_valid("Short", 1)
+    True
+    >>> is_length_valid("Short", 1, 3)
+    False
     >>> is_length_valid("This is a valid title")
     True
-    >>> is_length_valid("THIS title is way too long to be valid", 3)
+    >>> is_length_valid("too long to be valid with default parameters")
     False
+    >>> is_length_valid("long but be valid with parameters", 1, 40)
+    True
     >>> is_length_valid("Exactly 12 chars")
     True
     >>> is_length_valid("Exact 25 characters long!")
@@ -42,6 +48,8 @@ def has_capital_letters(title: str, num: int = 1):
     True
     >>> has_capital_letters("title with Capital in middle", 1)
     True
+    >>> has_capital_letters("title with Capital in middle", 2)
+    False
     >>> has_capital_letters("TITLE ending with A", 5)  # Capital at end
     True
     >>> has_capital_letters("123 Title", 2)  # Capital after numbers
@@ -64,16 +72,16 @@ def has_lowercase_letters(title: str, num: int = 2):
     function name: has_lowercase_letters
     checks if the title contains at least one lowercase letters
 
-    >>> has_lowercase_letters("Title with lowercase")
+    >>> has_lowercase_letters("Title with lowercase", 1)
     True
     >>> has_lowercase_letters("TITLE WITHOUT LOWERCASE")
     False
     >>> has_lowercase_letters("Title With Mixed Case", 20)
     False
-    >>> has_lowercase_letters("TITLE with one lowercase")
-    True
-    >>> has_lowercase_letters("TITLE WITH 1 LOWERCASE a")
+    >>> has_lowercase_letters("TITLE WITH ONE LOWERCASe")
     False
+    >>> has_lowercase_letters("TITLE WITH 1 LOWERCASE a", 0)
+    True
     """
     LOWER_ALPHA = 'abcdefghijklmnopqrstuvwxyz'
     counter = 0
@@ -94,10 +102,12 @@ def has_numbers(title: str, num: int = 1):
     True
     >>> has_numbers("Title without numbers")
     False
-    >>> has_numbers("Title with 123 numbers")
+    >>> has_numbers("Title without numbers", 0)
     True
-    >>> has_numbers("Title with number at end1")
+    >>> has_numbers("Title with 123 numbers", 3)
     True
+    >>> has_numbers("Title with number at end1", 2)
+    False
     >>> has_numbers("1Title starting with number")
     True
     """
@@ -118,14 +128,16 @@ def has_special_characters(title: str, num: int = 1):
 
     >>> has_special_characters("Title with! special")
     True
+    >>> has_special_characters("Title without special", 0)
+    True
     >>> has_special_characters("Title without special")
     False
-    >>> has_special_characters("Title with: special")
+    >>> has_special_characters("Title with:::: special", 3)
     True
     >>> has_special_characters("Title with. special")
     True
-    >>> has_special_characters("Title with& special")
-    True
+    >>> has_special_characters("Title with& special", 2)
+    False
     """
     SPECIAL = '!.;:&'
     counter = 0
