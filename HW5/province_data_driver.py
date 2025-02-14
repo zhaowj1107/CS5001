@@ -33,6 +33,7 @@ def main():
     print(f"create_dictionary_by_province: {len(dict_by_province)}")
     print(f"dictionary_of_dictionaries_by_province: {len(dict_of_dict)}")
     print(f"British Columbia's population: {dict_by_BC['Population']:,}")
+    # numbers with thousands separators is needed
     print(f"Yukon's area: {dict_by_yukon['Area']:,.2f}")
     print(f"Is Nunavut a province? {dict_by_nu['Is Province?']}")
     print(f"Population density of Quebec: {quebec_density:,.2f} people per square km")

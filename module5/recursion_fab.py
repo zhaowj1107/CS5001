@@ -1,6 +1,5 @@
 from typing import List
 from timeit import default_timer as timer
-import sys
 
 def resurive_fibonacci(n):
     if n == 0:
