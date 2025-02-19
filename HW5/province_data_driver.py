@@ -11,6 +11,7 @@ homework 5-2: Provinces Data Dictionary
 import province_data_analysis as pda
 from territory_province_data import PROVINCE_NAMES, POPULATION, AREA, IS_PROVINCE, HEADERS
 
+
 def main():
     """
     Function: main

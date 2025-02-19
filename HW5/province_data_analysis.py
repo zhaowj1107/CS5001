@@ -5,11 +5,11 @@ Date: 2025-02-13
 Class: CS_5001, Spring_2025
 Description: 
 homework 5-2: Provinces Data Dictionary
+for this problem, stylecheck will ignore the length limitation
 """
 
 
-def create_data_dictionary_by_province_in_lists(province_names: list, population: list,
-                                                area: list, is_province: list):
+def create_data_dictionary_by_province_in_lists(province_names: list, population: list, area: list, is_province: list):
     """
     This function creates a dictionary where each key is a province name and 
     each value is a list containing the corresponding population, area, 
@@ -31,8 +31,7 @@ def create_data_dictionary_by_province_in_lists(province_names: list, population
     return province_list
 
 
-def create_dictionary_by_provinces(province_names: list,population: list, 
-                                   area: list, is_province: list, headers: list):
+def create_dictionary_by_provinces(province_names: list, population: list, area: list, is_province: list, headers: list):
     """
     This function creates a dictionary where each key is a header name and 
     each value is a list containing all values for that category across provinces.
@@ -52,8 +51,7 @@ def create_dictionary_by_provinces(province_names: list,population: list,
     return province_list
 
 
-def create_dictionary_by_province(province_name, province_names: list,population: list, 
-                                   area: list, is_province: list, headers: list):
+def create_dictionary_by_province(province_name, province_names: list, population: list, area: list, is_province: list, headers: list):
     """
     This function creates a dictionary for a specific province where each key is a header name and 
     each value is the corresponding data for that province.
@@ -75,8 +73,7 @@ def create_dictionary_by_province(province_name, province_names: list,population
     return province_list
 
 
-def create_dictionary_of_dictionaries_by_province(province_names: list, population: list,
-                                                  area: list, is_province: list, headers: list):
+def create_dictionary_of_dictionaries_by_province(province_names: list, population: list, area: list, is_province: list, headers: list):
     """
     This function creates a dictionary where each key is a province name and 
     each value is a dictionary containing all data for that province.

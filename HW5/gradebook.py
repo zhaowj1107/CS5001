@@ -27,9 +27,10 @@ def find_student(students: list, name: str):
     return None
 
 
-def get_average(numbers, drop_lowest: int = 0): # greater than zero include zero or not?
+def get_average(numbers, drop_lowest: int = 0):  # include zero or not?
     """
-    Calculates the average of a list of numbers, optionally dropping the lowest scores.
+    Calculates the average of a list of numbers
+    optionally dropping the lowest scores.
     Parameters:
         numbers: list of numbers to average
         drop_lowest: number of lowest scores to drop (default 0)
@@ -44,7 +45,7 @@ def get_average(numbers, drop_lowest: int = 0): # greater than zero include zero
     """
     numbers.sort(reverse=True)
     while drop_lowest > 0:
-        if numbers[-1] >= 0 :
+        if numbers[-1] >= 0:
             numbers.pop()
         drop_lowest = drop_lowest - 1
     sum = 0
@@ -92,20 +93,43 @@ def calculate_student_average(student: dict, grade_structure: dict):
     >>> calculate_student_average(student1, grade_structure1)
     90.0
     """
-    homework_avg = get_average(student['homework'], grade_structure['homework']['drop_lowest'])
-    quizzes_avg = get_average(student['quizzes'], grade_structure['quizzes']['drop_lowest'])
+    homework_avg = get_average(student['homework'], 
+                               grade_structure['homework']['drop_lowest'])
+    quizzes_avg = get_average(student['quizzes'], 
+                              grade_structure['quizzes']['drop_lowest'])
     midterm_score = student['midterm']
     final_score = student['final']
     homework_avg_weight = homework_avg * grade_structure['homework']['weight']
     quizzes_avg_weight = quizzes_avg * grade_structure['quizzes']['weight']
     midterm_weight = midterm_score * grade_structure['midterm']['weight']
     final_weight = final_score * grade_structure['final']['weight']
-    total_avg = homework_avg_weight + quizzes_avg_weight + midterm_weight + final_weight
+    total_avg = homework_avg_weight + quizzes_avg_weight
+    total_avg = total_avg + midterm_weight + final_weight
     return total_avg
 
-def get_letter_grade(average_grade: float, grade_cutoffs: dict):
 
-    # if dictionary is not in order, how could we know it the iteration will go from first to last
+def get_letter_grade(average_grade: float, grade_cutoffs: dict):
+    """
+    Converts a numeric grade to a letter grade based on cutoff scores.
+    Parameters:
+        average_grade: float representing the student's average grade
+        grade_cutoffs: dictionary mapping letter grades to minimum scores
+    Returns:
+        string representing the letter grade
+    >>> grade_cutoffs = {'A+': 95, 'A': 90, 'B+': 85, 'B': 80, 'C+': 75}
+    >>> get_letter_grade(97, grade_cutoffs)
+    'A+'
+    >>> get_letter_grade(83, grade_cutoffs)
+    'B'
+    >>> get_letter_grade(76.5, grade_cutoffs)
+    'C+'
+    >>> get_letter_grade(90, grade_cutoffs)
+    'A'
+    >>> get_letter_grade(70, grade_cutoffs)
+    'Invalid Score'
+    """
+    # if dictionary is not in order, how could we know that 
+    # the iteration will go from first to last
     final_letter = ""
     for letter, score in grade_cutoffs.items():
         if average_grade >= score:
@@ -113,40 +137,23 @@ def get_letter_grade(average_grade: float, grade_cutoffs: dict):
     return 'Invalid Score'
 
 
-def display_student_report(student: dict, grade_structure: dict, grade_cutoffs: dict):
+def display_student_report(student: dict, grade_structure: dict, 
+                           grade_cutoffs: dict):
 
     average_grade = calculate_student_average(student, grade_structure)
     letter = get_letter_grade(average_grade, grade_cutoffs)
     print(f"{student['name']}: {round(average_grade, 1)}% ({letter})")
     return None
 
-def display_class_report(students: list, grade_structure: dict, grade_cutoffs: dict):
+
+def display_class_report(students: list, grade_structure: dict, 
+                         grade_cutoffs: dict):
     for student_index in range(len(students)):
-        display_student_report(students[student_index], grade_structure, grade_cutoffs)
+        display_student_report(students[student_index], 
+                               grade_structure, grade_cutoffs)
     return None
 
 
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
-    from student_data import STUDENTS
-    from grade_cutoffs import GRADE_CUTOFFS
-    from grade_structure import GRADE_STRUCTURE
-    # test_scores = [85, 90, 78, 92, 88]
-    # print("Lowest score:", find_lowest(test_scores))  # Should print 78
-
-    # print("Average with no drop:", get_average(test_scores))  # Should print 86.6
-    # print("Average with drop lowest:", get_average(test_scores, 78))  # Should print 88.75
-
-    # first_student = STUDENTS[0]
-    # avg = calculate_student_average(first_student, GRADE_STRUCTURE)
-    # print(f"{first_student['name']} average:", avg)
-
-    # print("A+ grade:", get_letter_grade(97, GRADE_CUTOFFS))  # Should print A+
-    # print("B grade:", get_letter_grade(83, GRADE_CUTOFFS))   # Should print B
-    # print("F grade:", get_letter_grade(59, GRADE_CUTOFFS))   # Should print F
-
-    # display_student_report(first_student, GRADE_STRUCTURE, GRADE_CUTOFFS) # Test display_student_report
-
-    # display_class_report(STUDENTS, GRADE_STRUCTURE, GRADE_CUTOFFS) # Test display_class_report
-    # display_student_report("Alice Smith", GRADE_STRUCTURE, GRADE_CUTOFFS)
