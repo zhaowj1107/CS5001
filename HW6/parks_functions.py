@@ -56,7 +56,7 @@ def read_from_url(url: str) -> list[str]:
     except Exception as err:
         print(f"Other error occurred: {err}")
     else:
-        return list_1
+        return list_1[1:]
 
 
 def construct_park_dictionary(contents: list[str]) -> dict[str, list]:
@@ -66,22 +66,15 @@ def construct_park_dictionary(contents: list[str]) -> dict[str, list]:
     Returns: dict[str, list] - dictionary mapping park names to neighbourhoods
     Constructs a dictionary from park data where keys are park names
     and values are lists containing neighbourhood information.
-    >>> data = [
-    ...     "Park Name,Neighbourhood",
-    ...     "Green Park,Midtown",
-    ...     "Blue Park,Midtown",
-    ...     "Sunny Park,Midtown",
-    ... ]
-    >>> construct_park_dictionary(data)
-    {'Midtown': ['Green Park', 'Blue Park', 'Sunny Park']}
-    >>> construct_park_dictionary(["Park Name,Neighbourhood"])  # No parks, only header
-    {}
-    >>> construct_park_dictionary([])  # Empty list
-    {}
+    >>> construct_park_dictionary(["P1, Downtown", "P2, Downtown", "P3, Grandview-Woodland", "P4, Grandview-Woodland", "P5, Mount Pleasant"])
+    {'Downtown': ['P1', 'P2'], 'Grandview-Woodland': ['P3', 'P4'], 'Mount Pleasant': ['P5']}
+
+    >>> construct_park_dictionary(["ParkA, NeighbourhoodA", "ParkB, NeighbourhoodB", "ParkC, NeighbourhoodA"])
+    {'NeighbourhoodA': ['ParkA', 'ParkC'], 'NeighbourhoodB': ['ParkB']}
     '''
     try:
         neighbourhood_parks = {}
-        for line in contents[1:]:  # Start reading from the second line
+        for line in contents:  # Start reading from the second line
             if not line.strip():  # Ignore empty lines
                 continue
             park_name, neighbourhood = line.strip().split(",", 1)  # Only split at the first comma
