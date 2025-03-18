@@ -24,7 +24,7 @@ def parse_entry(entry: str):
     ['1', 'pinch', 'of cinnamon']
     """
     list_result = []
-    seperate_index = entry.rfind("of")
+    seperate_index = entry.rfind("of") # find the last "of" in the string, and use this index to split the string
     for str in entry[:seperate_index].split():
         list_result.append(str)
     ingredient = entry[seperate_index:]
@@ -44,7 +44,7 @@ def validate_unit(unit: str):
         "tablespoon", "gram", "liter"
     ]
     if unit[-1] == "s":
-        unit_singular = unit[:-1]
+        unit_singular = unit[:-1] # remove the last character "s" of the string
     else:
         unit_singular = unit
     if unit_singular in unit_list:
@@ -66,7 +66,7 @@ def validate_quantity(quantity: str):
     >>> validate_quantity("")
     False
     """
-    quantity = quantity.replace(".", "")
+    quantity = quantity.replace(".", "") # remove the "." in the string, so that the string can be checked by isdigit()
     if quantity.isdigit():
         return True
     else:
@@ -95,13 +95,13 @@ def validate_ingredient(ingredient: str):
     conn_words = ["of ", "and ", "with ", "in "]
     for word in conn_words:
         if ingredient.find(word) != -1:
-            ingredient = ingredient.replace(word, "")
-    ingredient_clean = ingredient.rstrip()
-    if not (ingredient_clean.replace(" ", "").isalpha()):
+            ingredient = ingredient.replace(word, "") # remove the connection words in the string
+    ingredient_clean = ingredient.rstrip() # remove the whitespace at the end of the string
+    if not (ingredient_clean.replace(" ", "").isalpha()): # check if the string contains any invalid characters
         return "Invalid Ingredient"
     else:
         for letter in range(len(ingredient_clean) - 2):
-            if ingredient_clean[letter] == ingredient_clean[letter + 1] == ingredient_clean[letter + 2]:
+            if ingredient_clean[letter] == ingredient_clean[letter + 1] == ingredient_clean[letter + 2]: # check if the string contains any three consecutive same characters
                 return "Invalid Ingredient"
         return ingredient_clean
     pass

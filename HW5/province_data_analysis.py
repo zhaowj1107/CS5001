@@ -27,7 +27,7 @@ def create_data_dictionary_by_province_in_lists(province_names: list, population
     province_list = {}
     length = len(province_names)
     for name_index in range(length):
-        province_list[province_names[name_index]] = [population[name_index], area[name_index], is_province[name_index]]
+        province_list[province_names[name_index]] = [population[name_index], area[name_index], is_province[name_index]] # nested list for each province
     return province_list
 
 
@@ -47,7 +47,7 @@ def create_dictionary_by_provinces(province_names: list, population: list, area:
     {'Name': ['BC', 'AB'], 'Pop': [1, 2], 'Area': [10.0, 20.0], 'Prov?': [True, False]}
     """
     list_value = [province_names, population, area, is_province]
-    province_list = dict(zip(headers, list_value))
+    province_list = dict(zip(headers, list_value)) # zip the headers and values into a dictionary
     return province_list
 
 

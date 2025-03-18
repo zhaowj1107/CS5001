@@ -58,11 +58,11 @@ def process_direction(sentences: list, direction: str):
     if direction.lower() == 'forward':
         return sentences
     elif direction.lower() == 'backward':
-        for line_index in range(len(sentences) - 1, -1, -1):
+        for line_index in range(len(sentences) - 1, -1, -1): # range from the last index to the first index
             new_sentences.append(sentences[line_index])
         return new_sentences
     else:
-        for line_index in range(0, len(sentences), 2):
+        for line_index in range(0, len(sentences), 2): # range from the first index with step 2
             new_sentences.append(sentences[line_index])
         return new_sentences
 

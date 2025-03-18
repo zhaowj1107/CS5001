@@ -18,7 +18,7 @@ def main():
     Returns: Nothing
     Pring out the result
     """
-    file_name = sys.argv[1]
+    file_name = sys.argv[1] # get the file name from the command line
     print(file_name)
     list_1 = pf.read_from_file(file_name)
     dict_1 = pf.construct_park_dictionary(list_1)

@@ -8,8 +8,8 @@ homework 6: Parks and Neighbourhoods
 """
 
 
-import parks_functions as pf
 import sys
+import parks_functions as pf
 
 
 def main():

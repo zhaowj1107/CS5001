@@ -24,12 +24,10 @@ def read_from_file(filename: str) -> list[str]:
         with open(filename, "r") as file:
             for line in file:
                 list_1.append(line.strip())
-    except FileNotFoundError:
+    except FileNotFoundError: # Handle file not found error, very common!
         print(f"Error: The file '{filename}' was not found.")
     except PermissionError:
         print(f"Error: Permission denied when trying to read '{filename}'.")
-    except IOError:
-        print(f"Error: An I/O error occurred while accessing '{filename}'.")
     except Exception as e:
         print(f"An unexpected error occurred while reading '{filename}': {e}")
     return list_1
@@ -198,7 +196,7 @@ def get_neighbourhood_with_most_parks(parks: dict[str, str]) -> str:
         dict_count = count_neighbourhood_parks(parks)
         if not dict_count:  # Handle case where no parks exist
             raise ValueError("No parks found in the provided dictionary.")
-        holder = -1
+        holder = -1 # Initialize to a negative value to ensure the first count is always greater
         result = None
         for neigh, number in dict_count.items():
             if not isinstance(neigh, str) or not isinstance(number, int):

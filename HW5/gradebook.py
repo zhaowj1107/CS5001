@@ -43,7 +43,7 @@ def get_average(numbers, drop_lowest: int = 0):  # include zero or not?
     >>> get_average([85, 90, 78, 92, 88], 2)
     90.0
     """
-    numbers.sort(reverse=True)
+    numbers.sort(reverse=True) # sort the list in descending order
     while drop_lowest > 0:
         if numbers[-1] >= 0:
             numbers.pop()
@@ -131,7 +131,7 @@ def get_letter_grade(average_grade: float, grade_cutoffs: dict):
     # if dictionary is not in order, how could we know that 
     # the iteration will go from first to last
     final_letter = ""
-    for letter, score in grade_cutoffs.items():
+    for letter, score in grade_cutoffs.items(): # in python 3.7 above, dictionary is ordered
         if average_grade >= score:
             return letter
     return 'Invalid Score'
